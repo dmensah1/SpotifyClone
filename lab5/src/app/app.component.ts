@@ -6,5 +6,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'lab5';
+  title = 'Music Review App';
+  // need to save user authentication state in here
 }

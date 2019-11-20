@@ -1,0 +1,82 @@
+<mat-card>
+  <form (submit)="onAddSong(songForm)" #songForm="ngForm">
+      <mat-form-field>
+          <input
+           matInput
+           type="text"
+           name="title"
+           ngModel
+           required
+           placeholder="Song Title (max. 30 characters)"
+           #title="ngModel">
+           <mat-error *ngIf="title.invalid">Please enter a song title.</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <textarea
+           matInput
+           rows="1"
+           name="artist"
+           ngModel
+           required
+           placeholder="Artist Name (max. 30 characters)"
+           #artist="ngModel">
+          </textarea>
+           <mat-error *ngIf="artist.invalid">Please enter an artist.</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <textarea
+             matInput
+             rows="1"
+             name="album"
+             ngModel
+             placeholder="Album Name (max. 30 characters)"
+             #album="ngModel">
+            </textarea>
+        </mat-form-field>
+        <mat-form-field>
+             <textarea
+             matInput
+             rows="1"
+             name="year"
+             ngModel
+             placeholder="Year"
+             #year="ngModel">
+            </textarea>
+        </mat-form-field>
+        <mat-form-field>
+            <textarea
+            matInput
+            rows="1"
+            name="comment"
+            ngModel
+            placeholder="Comments (max. 30 characters)"
+            #comment="ngModel">
+           </textarea>
+       </mat-form-field>
+       <mat-form-field>
+          <textarea
+          matInput
+          rows="1"
+          name="track"
+          ngModel
+          placeholder="Track Number"
+          #track="ngModel">
+         </textarea>
+     </mat-form-field>
+     <mat-form-field>
+        <textarea
+        matInput
+        rows="1"
+        name="genre"
+        ngModel
+        placeholder="Genre (max. 15 characters)"
+        #genre="ngModel">
+       </textarea>
+    </mat-form-field>
+        <button
+        mat-raised-button
+        color="primary"
+         type="submit">Save Song</button>
+  </form>
+</mat-card>
+

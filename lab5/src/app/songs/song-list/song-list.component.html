@@ -1,0 +1,18 @@
+<mat-accordion multi="true" *ngIf="songs.length > 0">
+  <mat-expansion-panel *ngFor="let song of songs">
+    <mat-expansion-panel-header>
+      {{ song.title }} by {{ song.artist }}
+    </mat-expansion-panel-header>
+      <p>From album: {{ song.album }} <br>
+         Released in: {{ song. year}} <br>
+         Comments: {{ song.comment }} <br>
+         Track Number: {{ song.track }} <br>
+         Genre: {{ song.genre }}
+    </p>
+    <mat-action-row>
+      <button mat-button color="primary">Edit</button>
+      <button mat-button color="warn" (click)="onDelete(song.id)">Delete</button>
+    </mat-action-row>
+  </mat-expansion-panel>
+</mat-accordion>
+<p class="info-text mat-body-1" *ngIf="songs.length <= 0">No songs yet</p>
