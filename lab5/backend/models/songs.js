@@ -7,10 +7,10 @@ const songSchema = mongoose.Schema({
   title: { type: String, required: true, maxlength: 30 },
   artist: { type: String, required: true, maxlength: 30 },
   album: { type: String, maxlength: 30 },
-  year: { type: Number},
-  zeroByte: { type: Number},
+  year: { type: String},
+  zeroByte: { type: String},
   comment: { type: String, maxlength: 30 },
-  track: { type: Number},
+  track: { type: String},
   genre: { type: String, maxlength: 15 }
   //creator: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true}
 });

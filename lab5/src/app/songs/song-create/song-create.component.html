@@ -5,7 +5,7 @@
            matInput
            type="text"
            name="title"
-           ngModel
+           [(ngModel)]="songTitleInput"
            required
            placeholder="Song Title (max. 30 characters)"
            #title="ngModel">
@@ -97,6 +97,52 @@
         mat-raised-button
         color="primary"
          type="submit">Save Song</button>
+  </form>
+</mat-card>
+
+
+<mat-card>
+  <form (submit)="onAddReview(reviewForm)" #reviewForm="ngForm">
+      <mat-form-field>
+          <input
+           matInput
+           type="text"
+           name="title"
+           ngModel
+           required
+           placeholder="Song Title"
+           #title="ngModel"> {{ songTitleInput }}
+        </mat-form-field>
+      <mat-form-field>
+          <input
+           matInput
+           type="number"
+           min="1"
+           max="5"
+           name="rating"
+           ngModel
+           required
+           placeholder="Song Rating (1-5)"
+           #rating="ngModel">
+           <mat-error *ngIf="rating.invalid">Please enter a valid rating.</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <textarea
+           matInput
+           rows="5"
+           name="review"
+           maxlength="240"
+           ngModel
+           required
+           placeholder="Review (max. 240 characters)"
+           #review="ngModel">
+          </textarea>
+           <mat-error *ngIf="review.invalid">Please enter a valid review.</mat-error>
+        </mat-form-field>
+        <button
+        mat-raised-button
+        color="primary"
+         type="submit">Save Review</button>
   </form>
 </mat-card>
 

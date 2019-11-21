@@ -3,6 +3,7 @@ import { NgForm } from '@angular/forms';
 import { SongsService } from '../songs.service';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { Song } from '../song.model';
+import { ReviewsService } from 'src/app/reviews/review.service';
 
 @Component({
   selector: 'app-song-create',
@@ -15,8 +16,9 @@ export class SongCreateComponent implements OnInit {
   private mode = 'create';
   private songId: string;
   song: Song;
+  songTitleInput = '';
 
-  constructor(public songsService: SongsService, public route: ActivatedRoute) {}
+  constructor(public songsService: SongsService, public reviewsService: ReviewsService, public route: ActivatedRoute) {}
 
   ngOnInit() {
     this.route.paramMap.subscribe((paramMap: ParamMap) => {
@@ -42,6 +44,12 @@ export class SongCreateComponent implements OnInit {
         form.value.header,
         form.value.zeroByte
         );
+    form.resetForm();
+  }
+
+  onAddReview(form: NgForm) {
+    if (form.invalid) { return; }
+    this.reviewsService.addReview(form.value.rating, form.value.review, form.value.title);
     form.resetForm();
   }
 }

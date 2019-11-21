@@ -22,6 +22,8 @@ import { HeaderComponent } from './header/header.component';
 import { SongListComponent } from './songs/song-list/song-list.component';
 import { ReviewCreateComponent } from './reviews/review-create/review-create.component';
 import { SongFilterPipe } from './songs/song-list/song-filter.pipe';
+import { LoginComponent } from './user/login/login.component';
+import { SignupComponent } from './user/signup/signup.component';
 
 
 @NgModule({
@@ -31,7 +33,9 @@ import { SongFilterPipe } from './songs/song-list/song-filter.pipe';
     HeaderComponent,
     SongListComponent,
     ReviewCreateComponent,
-    SongFilterPipe
+    SongFilterPipe,
+    LoginComponent,
+    SignupComponent
   ],
   imports: [
     BrowserModule,

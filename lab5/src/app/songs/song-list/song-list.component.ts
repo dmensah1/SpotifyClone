@@ -26,7 +26,7 @@ export class SongListComponent implements OnInit, OnDestroy {
     this.songs = songs;
   });
 
-  this.reviewsService.getReviews();
+   this.reviewsService.getReviews();
    this.reviewsSub = this.reviewsService.getReviewUpdateListener()
  .subscribe((reviews: Review[]) => {
    this.reviews = reviews;

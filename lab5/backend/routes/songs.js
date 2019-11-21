@@ -1,9 +1,10 @@
 const express = require('express');
 const Song = require('../models/songs');
+const auth = require('../parsereqs/check-auth');
 
 const router = express.Router();
 
-router.post('', (req, res, next) => {
+router.post('', auth, (req, res, next) => {
   const song = new Song({
     title: req.body.title,
     artist: req.body.artist,
@@ -34,7 +35,7 @@ router.get('', (req, res, next) => {
   });
 });
 
-router.delete('/:id', (req, res, next) => {
+router.delete('/:id', auth, (req, res, next) => {
   Song.deleteOne({
     _id: req.params.id
   }).then(result => {

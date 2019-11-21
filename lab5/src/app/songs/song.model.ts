@@ -3,10 +3,10 @@ export interface Song {
   title: string;
   artist: string;
   album: string;
-  year: number;
+  year: string;
   comment: string;
-  track: number;
+  track: string;
   genre: string;
   header: string;
-  zeroByte: number;
+  zeroByte: string;
 }

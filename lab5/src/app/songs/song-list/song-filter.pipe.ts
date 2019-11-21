@@ -7,16 +7,17 @@ import { Song } from '../song.model';
 })
 export class SongFilterPipe implements PipeTransform {
   // first arg might need to be the string of songs
-  transform(songs: Song[], searchTerm: string): Song[] {
+  transform(songs: Song[], searchTerm: any): Song[] {
     if (!songs || !searchTerm) {
       return songs;
     }
-
     return songs.filter(song =>
        (song.title.toLowerCase().indexOf(searchTerm.toLowerCase()) !== -1) ||
         (song.artist.toLowerCase().indexOf(searchTerm.toLowerCase()) !== -1) ||
         (song.album.toLowerCase().indexOf(searchTerm.toLowerCase()) !== -1) ||
         (song.comment.toLowerCase().indexOf(searchTerm.toLowerCase()) !== -1) ||
-        (song.genre.toLowerCase().indexOf(searchTerm.toLowerCase()) !== -1) );
+        (song.genre.toLowerCase().indexOf(searchTerm.toLowerCase()) !== -1)  ||
+        (song.header.toLowerCase().indexOf(searchTerm.toLowerCase()) !== -1) ||
+        (song.year.toLowerCase().indexOf(searchTerm.toLowerCase()) !== -1));
   }
 }

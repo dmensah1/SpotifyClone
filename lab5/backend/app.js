@@ -6,6 +6,7 @@ const mongoose = require('mongoose');
 
 const songsRoutes = require('./routes/songs');
 const reviewsRoutes = require('./routes/reviews');
+const userRoutes = require('./routes/users');
 
 const app = express();  //returns us an express app which can now be used
 
@@ -40,6 +41,8 @@ app.use((req, res, next) => {
 app.use("/api/songs", songsRoutes);
 
 app.use("/api/reviews", reviewsRoutes);
+
+app.use("/api/user", userRoutes);
 
 //export
 module.exports = app;

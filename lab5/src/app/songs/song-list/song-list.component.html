@@ -21,12 +21,12 @@
     </p>
     <hr>
     <div *ngFor="let review of reviews">
-      <p *ngIf="review.songName === song.title">
+      <span *ngIf="review.songName === song.title">
         Rating: {{ review.rating }}
         <br>
         Review: {{ review.review }}
-      </p>
-
+        <hr>
+      </span>
     </div>
     <mat-action-row>
       <a mat-button color="primary" [routerLink]="['/review-create', song.id]">Add a Review</a>

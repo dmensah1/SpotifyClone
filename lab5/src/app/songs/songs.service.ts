@@ -47,8 +47,8 @@ constructor(private http: HttpClient) {}
     return {...this.songs.find(s => s.id === id)};
   }
 
-  addSong(title: string, artist: string, album: string, year: number,
-          comment: string, track: number, genre: string, header: string, zeroByte: number) {
+  addSong(title: string, artist: string, album: string, year: string,
+          comment: string, track: string, genre: string, header: string, zeroByte: string) {
 
     const song: Song = {id: null, title: title, artist: artist, album: album, year: year, comment: comment,
        track: track, genre: genre, header: header, zeroByte: zeroByte};
