@@ -9,11 +9,7 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./song-list.component.css']
 })
 export class SongListComponent implements OnInit, OnDestroy {
-  /*songs = [
-    {title: '1st song', content: '1st song content'},
-    {title: '2st song', content: '2st song content'},
-    {title: '3st song', content: '3st song content'}
-  ];*/
+ searchWord: string;
  songs: Song[] = [];
  private songsSub: Subscription;
 

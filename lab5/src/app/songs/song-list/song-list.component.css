@@ -3,6 +3,10 @@
   margin-top: 1rem;
 }
 
+h2, p {
+  text-align: center;
+}
+
 .info-text {
   text-align: center;
 }

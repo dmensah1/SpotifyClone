@@ -41,6 +41,10 @@ constructor(private http: HttpClient) {}
     return this.songsUpdated.asObservable();
   }
 
+  getSong(id: string) {
+    return {...this.songs.find(s => s.id === id)};
+  }
+
   addSong(title: string, artist: string, album: string, year: number, comment: string, track: number, genre: string) {
     const song: Song = {id: null, title: title, artist: artist, album: album, year: year, comment: comment, track: track, genre: genre};
     this.http.post<{message: string, songId: string}>('http://localhost:3000/api/songs', song)

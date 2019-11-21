@@ -13,13 +13,15 @@ import {
   MatToolbarModule,
   MatExpansionModule,
   MatProgressSpinnerModule,
-  MatPaginatorModule
+  MatPaginatorModule,
  } from '@angular/material';
 
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HeaderComponent } from './header/header.component';
 import { SongListComponent } from './songs/song-list/song-list.component';
+import { ReviewCreateComponent } from './reviews/review-create/review-create.component';
+import { SongFilterPipe } from './songs/song-list/song-filter.pipe';
 
 
 @NgModule({
@@ -27,7 +29,9 @@ import { SongListComponent } from './songs/song-list/song-list.component';
     AppComponent,
     SongCreateComponent,
     HeaderComponent,
-    SongListComponent
+    SongListComponent,
+    ReviewCreateComponent,
+    SongFilterPipe
   ],
   imports: [
     BrowserModule,

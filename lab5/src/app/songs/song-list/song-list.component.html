@@ -1,5 +1,12 @@
+<h2>About</h2>
+<p>Use this website to keep a record of your favorite songs, and feel free to add
+  a review to let other user's know about the songs. You have the opportunity to
+  sign up to gain increased access within the website.</p>
+  <hr>
+  <input matInput type="text" placeholder="Search A Song" [(ngModel)]="searchWord">
+
 <mat-accordion multi="true" *ngIf="songs.length > 0">
-  <mat-expansion-panel *ngFor="let song of songs">
+  <mat-expansion-panel *ngFor="let song of songs | songFilter:searchWord">
     <mat-expansion-panel-header>
       {{ song.title }} by {{ song.artist }}
     </mat-expansion-panel-header>
@@ -10,7 +17,7 @@
          Genre: {{ song.genre }}
     </p>
     <mat-action-row>
-      <button mat-button color="primary">Edit</button>
+      <a mat-button color="primary" [routerLink]="['/review-create', song.id]">Add a Review</a>
       <button mat-button color="warn" (click)="onDelete(song.id)">Delete</button>
     </mat-action-row>
   </mat-expansion-panel>
