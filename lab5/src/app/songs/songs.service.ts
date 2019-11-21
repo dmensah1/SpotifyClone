@@ -22,8 +22,10 @@ constructor(private http: HttpClient) {}
           return {
             id: song._id,
             title: song.title,
+            header: song.header,
             artist: song.artist,
             album: song.album,
+            zeroByte: song.zeroByte,
             year: song.year,
             comment: song.comment,
             track: song.track,
@@ -45,8 +47,11 @@ constructor(private http: HttpClient) {}
     return {...this.songs.find(s => s.id === id)};
   }
 
-  addSong(title: string, artist: string, album: string, year: number, comment: string, track: number, genre: string) {
-    const song: Song = {id: null, title: title, artist: artist, album: album, year: year, comment: comment, track: track, genre: genre};
+  addSong(title: string, artist: string, album: string, year: number,
+          comment: string, track: number, genre: string, header: string, zeroByte: number) {
+
+    const song: Song = {id: null, title: title, artist: artist, album: album, year: year, comment: comment,
+       track: track, genre: genre, header: header, zeroByte: zeroByte};
     this.http.post<{message: string, songId: string}>('http://localhost:3000/api/songs', song)
     .subscribe((responseData) => {
       const id = responseData.songId;

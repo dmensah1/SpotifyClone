@@ -4,6 +4,7 @@
   sign up to gain increased access within the website.</p>
   <hr>
   <input matInput type="text" placeholder="Search A Song" [(ngModel)]="searchWord">
+  <hr>
 
 <mat-accordion multi="true" *ngIf="songs.length > 0">
   <mat-expansion-panel *ngFor="let song of songs | songFilter:searchWord">
@@ -14,8 +15,19 @@
          Released in: {{ song. year}} <br>
          Comments: {{ song.comment }} <br>
          Track Number: {{ song.track }} <br>
-         Genre: {{ song.genre }}
+         Genre: {{ song.genre }} <br>
+         Header: {{ song.header }} <br>
+         Zero Byte: {{ song.zeroByte }}
     </p>
+    <hr>
+    <div *ngFor="let review of reviews">
+      <p *ngIf="review.songName === song.title">
+        Rating: {{ review.rating }}
+        <br>
+        Review: {{ review.review }}
+      </p>
+
+    </div>
     <mat-action-row>
       <a mat-button color="primary" [routerLink]="['/review-create', song.id]">Add a Review</a>
       <button mat-button color="warn" (click)="onDelete(song.id)">Delete</button>

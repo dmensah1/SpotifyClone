@@ -7,8 +7,10 @@ router.post('', (req, res, next) => {
   const song = new Song({
     title: req.body.title,
     artist: req.body.artist,
+    header: req.body.header,
     album: req.body.album,
     year: req.body.year,
+    zeroByte: req.body.zeroByte,
     comment: req.body.comment,
     track: req.body.track,
     genre: req.body.genre

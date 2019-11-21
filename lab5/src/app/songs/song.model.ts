@@ -7,4 +7,6 @@ export interface Song {
   comment: string;
   track: number;
   genre: string;
+  header: string;
+  zeroByte: number;
 }

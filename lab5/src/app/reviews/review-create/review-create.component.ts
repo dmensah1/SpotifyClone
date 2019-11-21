@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ReviewsService } from '../review.service';
-/*import { SongCreateComponent } from '../../songs/song-create/song-create.component';
+import { SongCreateComponent } from '../../songs/song-create/song-create.component';
 import { Song } from '../../songs/song.model';
-import { SongsService } from '../../songs/songs.service';*/
+import { SongsService } from '../../songs/songs.service';
 
 @Component({
   selector: 'app-review-create',
@@ -12,12 +12,15 @@ import { SongsService } from '../../songs/songs.service';*/
 })
 
 export class ReviewCreateComponent {
-  //song: Song;
-  constructor(public reviewsService: ReviewsService) {}
+
+  constructor(public reviewsService: ReviewsService, public songsService: SongsService) {}
+  song: Song;
+
 
   onAddReview(form: NgForm) {
     if (form.invalid) { return; }
-    this.reviewsService.addReview(form.value.rating, form.value.review);
+    this.reviewsService.addReview(form.value.rating, form.value.review, this.song.title);
+    // form.value.title
     form.resetForm();
   }
 }

@@ -38,7 +38,9 @@ export class SongCreateComponent implements OnInit {
         form.value.year,
         form.value.comment,
         form.value.track,
-        form.value.genre
+        form.value.genre,
+        form.value.header,
+        form.value.zeroByte
         );
     form.resetForm();
   }
