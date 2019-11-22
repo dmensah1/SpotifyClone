@@ -34,6 +34,7 @@ export class SongListComponent implements OnInit, OnDestroy {
  .subscribe((reviews: Review[]) => {
    this.reviews = reviews;
  });
+   this.userIsAuthenticated = this.authService.getIsAuth();
    this.authStatusSub = this.authService.getAuthStatusListener()
    .subscribe(isAuthenticated => {
     this.userIsAuthenticated = isAuthenticated;

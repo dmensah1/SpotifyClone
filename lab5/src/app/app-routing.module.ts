@@ -5,12 +5,13 @@ import { SongCreateComponent } from './songs/song-create/song-create.component';
 import { ReviewCreateComponent } from './reviews/review-create/review-create.component';
 import { LoginComponent } from './user/login/login.component';
 import { SignupComponent } from './user/signup/signup.component';
+import { AuthGuard } from './user/auth.guard';
 
 
 const routes: Routes = [
   { path: '', component: SongListComponent },
-  { path: 'create', component: SongCreateComponent },
-  { path: 'review-create/:songId', component: ReviewCreateComponent},
+  { path: 'create', component: SongCreateComponent, canActivate: [AuthGuard] },
+  { path: 'review-create/:songId', component: ReviewCreateComponent, canActivate: [AuthGuard]},
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent }
 ];
@@ -18,7 +19,7 @@ const routes: Routes = [
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
-  providers: []
+  providers: [AuthGuard]
 })
 
 export class AppRoutingModule {}
