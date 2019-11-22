@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 
 import { AppComponent } from './app.component';
@@ -24,6 +24,7 @@ import { ReviewCreateComponent } from './reviews/review-create/review-create.com
 import { SongFilterPipe } from './songs/song-list/song-filter.pipe';
 import { LoginComponent } from './user/login/login.component';
 import { SignupComponent } from './user/signup/signup.component';
+import { AuthInterceptor } from './user/auth-interceptor';
 
 
 @NgModule({
@@ -51,7 +52,7 @@ import { SignupComponent } from './user/signup/signup.component';
     MatPaginatorModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [{provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

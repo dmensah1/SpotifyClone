@@ -4,6 +4,7 @@ import { SongsService } from '../songs.service';
 import { Subscription } from 'rxjs';
 import { Review } from 'src/app/reviews/review.model';
 import { ReviewsService } from 'src/app/reviews/review.service';
+import { AuthService } from 'src/app/user/auth.service';
 
 @Component({
   selector: 'app-song-list',
@@ -14,10 +15,12 @@ export class SongListComponent implements OnInit, OnDestroy {
  searchWord: string;
  songs: Song[] = [];
  reviews: Review[] = [];
+ userIsAuthenticated = false;
   public reviewsSub: Subscription;
  private songsSub: Subscription;
+ private authStatusSub: Subscription;
 
- constructor(public songsService: SongsService, public reviewsService: ReviewsService) {}
+ constructor(public songsService: SongsService, public reviewsService: ReviewsService, private authService: AuthService) {}
 
  ngOnInit() {
    this.songsService.getSongs();
@@ -31,6 +34,10 @@ export class SongListComponent implements OnInit, OnDestroy {
  .subscribe((reviews: Review[]) => {
    this.reviews = reviews;
  });
+   this.authStatusSub = this.authService.getAuthStatusListener()
+   .subscribe(isAuthenticated => {
+    this.userIsAuthenticated = isAuthenticated;
+   });
  }
 
  onDelete(songId: string) {
@@ -39,5 +46,6 @@ export class SongListComponent implements OnInit, OnDestroy {
 
  ngOnDestroy() {
    this.songsSub.unsubscribe();
+   this.authStatusSub.unsubscribe();
  }
 }

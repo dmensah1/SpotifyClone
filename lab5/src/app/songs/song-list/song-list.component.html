@@ -28,7 +28,7 @@
         <hr>
       </span>
     </div>
-    <mat-action-row>
+    <mat-action-row *ngIf="userIsAuthenticated">
       <a mat-button color="primary" [routerLink]="['/review-create', song.id]">Add a Review</a>
       <button mat-button color="warn" (click)="onDelete(song.id)">Delete</button>
     </mat-action-row>

@@ -5,13 +5,14 @@ import { map } from 'rxjs/operators';
 
 
 import { Subject } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Injectable({providedIn: 'root'})
 export class SongsService {
   private songs: Song[] = [];
   private songsUpdated = new Subject<Song[]>();
 
-constructor(private http: HttpClient) {}
+constructor(private http: HttpClient, private router: Router) {}
 
   getSongs() {
     this.http.get<{message: string, songs: any}>(
