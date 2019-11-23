@@ -1,6 +1,6 @@
 <h2>About</h2>
 <p>Use this website to keep a record of your favorite songs, and feel free to add
-  a review to let other user's know about the songs. You have the opportunity to
+  a review to let other user's know how you feel about a song. You have the opportunity to
   sign up to gain increased access within the website.</p>
   <hr>
   <input matInput type="text" placeholder="Search A Song" [(ngModel)]="searchWord">
@@ -22,9 +22,11 @@
     <hr>
     <div *ngFor="let review of reviews">
       <span *ngIf="review.songName === song.title">
-        Rating: {{ review.rating }}
+        <strong>Rating: </strong>{{ review.rating }}
         <br>
-        Review: {{ review.review }}
+        <strong>Review: </strong>{{ review.review }}
+        <br>
+        <strong>From user: </strong>{{ review.username }}
         <hr>
       </span>
     </div>

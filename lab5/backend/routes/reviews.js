@@ -7,7 +7,8 @@ router.post('', (req, res, next) => {
   const review = new Review({
     rating: req.body.rating,
     review: req.body.review,
-    songName: req.body.songName
+    songName: req.body.songName,
+    username: req.body.username
   });
   review.save().then(result => {
     res.status(201).json({

@@ -1,4 +1,4 @@
-//creating the model for posts to be used with the databse
+//creating the model for songs to be used with the databse
 //this is just the blueprint/parameters for our data
 const mongoose = require('mongoose');
 

@@ -19,7 +19,7 @@ export class ReviewCreateComponent {
 
   onAddReview(form: NgForm) {
     if (form.invalid) { return; }
-    this.reviewsService.addReview(form.value.rating, form.value.review, form.value.title);
+    this.reviewsService.addReview(form.value.rating, form.value.review, form.value.title, form.value.username);
     // form.value.title
     form.resetForm();
   }

@@ -10,8 +10,15 @@ export class LoginComponent {
 
   constructor(public authService: AuthService) {}
 
+
   login(form: NgForm) {
     if (form.invalid) { return; }
-    this.authService.login(form.value.email, form.value.password);
+    const email = form.value.email;
+
+    if (email.indexOf('@admin.com') !== -1) {
+      this.authService.adminLogin(form.value.email, form.value.password);
+    } else {
+      this.authService.userLogin(form.value.email, form.value.password);
+    }
   }
 }

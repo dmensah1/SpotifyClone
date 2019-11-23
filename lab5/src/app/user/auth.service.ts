@@ -9,9 +9,11 @@ import { Router } from '@angular/router';
 })
 export class AuthService {
   private isAuthenticated = false;
+  private isAdmin = false;
   private token: string;
   private tokenTimer: any;
   private authStatusListener = new Subject<boolean>();
+  private adminAuthStatusListener = new Subject<boolean>();
 
   constructor(private http: HttpClient, private router: Router) {}
 
@@ -27,6 +29,14 @@ export class AuthService {
     return this.isAuthenticated;
   }
 
+  getIsAdminAuth() {
+    return this.isAdmin;
+  }
+
+  getAdminAuthStatusListener() {
+    return this.adminAuthStatusListener.asObservable();
+  }
+
 
   createUser(email: string, password: string) {
     const authData: AuthData = {email: email, password: password};
@@ -36,7 +46,15 @@ export class AuthService {
     });
   }
 
-  login(email: string, password: string) {
+  createAdmin(email: string, password: string) {
+    const authData: AuthData = {email: email, password: password};
+    this.http.post('http://localhost:3000/api/admin/signup', authData)
+    .subscribe(response => {
+      console.log(response);
+    });
+  }
+
+  userLogin(email: string, password: string) {
     const authData: AuthData = {email: email, password: password};
     this.http.post<{token: string, expiresIn: number}>('http://localhost:3000/api/user/login', authData)
     .subscribe(response => {
@@ -47,6 +65,26 @@ export class AuthService {
         this.setAuthTimer(expiresInDuration);
         this.isAuthenticated = true;
         this.authStatusListener.next(true);
+        const now = new Date();
+        const expirationDate = new Date(now.getTime() + expiresInDuration * 1000);
+        console.log(expirationDate);
+        this.saveAuthData(token, expirationDate);
+        this.router.navigate(['/']);
+      }
+    });
+  }
+
+  adminLogin(email: string, password: string) {
+    const authData: AuthData = {email: email, password: password};
+    this.http.post<{token: string, expiresIn: number}>('http://localhost:3000/api/admin/login', authData)
+    .subscribe(response => {
+      const token = response.token;
+      this.token = token;
+      if (token) {
+        const expiresInDuration = response.expiresIn;
+        this.setAuthTimer(expiresInDuration);
+        this.isAdmin = true;
+        this.adminAuthStatusListener.next(true);
         const now = new Date();
         const expirationDate = new Date(now.getTime() + expiresInDuration * 1000);
         console.log(expirationDate);
@@ -73,7 +111,9 @@ export class AuthService {
   logout() {
     this.token = null;
     this.isAuthenticated = false;
+    this.isAdmin = false;
     this.authStatusListener.next(false);
+    this.adminAuthStatusListener.next(false);
     clearTimeout(this.tokenTimer);
     this.clearAuthData();
     this.router.navigate(['/']);

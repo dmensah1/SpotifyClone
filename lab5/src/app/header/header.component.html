@@ -7,14 +7,18 @@
     <li *ngIf="userIsAuthenticated">
       <a mat-button routerLink="/create" routerLinkActive="mat-accent">Add a Song</a>
     </li>
-    <li *ngIf="!userIsAuthenticated">
+    <li *ngIf="!userIsAuthenticated && !adminIsAuthenticated">
       <a mat-button routerLink="/login" routerLinkActive="mat-accent">Login</a>
     </li>
-    <li *ngIf="!userIsAuthenticated">
+    <li *ngIf="!userIsAuthenticated && !adminIsAuthenticated">
       <a mat-button routerLink="/signup" routerLinkActive="mat-accent">Signup</a>
     </li>
-    <li *ngIf="userIsAuthenticated">
+    <li *ngIf="adminIsAuthenticated">
+        <button mat-button routerLink="/add-admin" routerLinkActive="mat-accent" >Add an Admin</button>
+    </li>
+    <li *ngIf="userIsAuthenticated || adminIsAuthenticated">
       <button mat-button (click)="onLogout()">Logout</button>
     </li>
+
   </ul>
 </mat-toolbar>

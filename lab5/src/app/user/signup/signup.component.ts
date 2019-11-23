@@ -12,6 +12,12 @@ export class SignupComponent {
 
   signup(form: NgForm) {
     if (form.invalid) { return; }
-    this.authService.createUser(form.value.email, form.value.password);
+    const email = form.value.email;
+
+    if (email.indexOf('@admin.com') !== -1) {
+      this.authService.createAdmin(form.value.email, form.value.password);
+    } else {
+      this.authService.createUser(form.value.email, form.value.password);
+    }
   }
 }

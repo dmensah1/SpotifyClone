@@ -4,13 +4,15 @@ const express = require('express');
 const bodyParser = require("body-parser");
 const mongoose = require('mongoose');
 
+//route imports
 const songsRoutes = require('./routes/songs');
 const reviewsRoutes = require('./routes/reviews');
 const userRoutes = require('./routes/users');
+const adminRoutes = require('./routes/admin');
 
 const app = express();  //returns us an express app which can now be used
 
-//THIS DB LINK MIGHT NEED UPDATING
+//connecting to my mongoDB Atlas database
 mongoose.connect("mongodb+srv://demirmensah:Baburyasemin12@cluster0-y4t5w.mongodb.net/lab5?retryWrites=true&w=majority")
 .then(() => {
   console.log('Database connection successfu!');
@@ -22,6 +24,7 @@ mongoose.connect("mongodb+srv://demirmensah:Baburyasemin12@cluster0-y4t5w.mongod
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
+//declaring headers
 app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader(
@@ -35,14 +38,14 @@ app.use((req, res, next) => {
   next();
 });
 
-
-
-//any request starting with path /api/posts will be forwarded into the postsRoutes file
+//forwarding incoming requests to the appropriate routes
 app.use("/api/songs", songsRoutes);
 
 app.use("/api/reviews", reviewsRoutes);
 
 app.use("/api/user", userRoutes);
 
-//export
+app.use("/api/admin", adminRoutes);
+
+//exporting the module
 module.exports = app;

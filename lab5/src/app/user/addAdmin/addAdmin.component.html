@@ -1,0 +1,27 @@
+<mat-card>
+    <form #addAdminForm="ngForm" (submit)="addAdmin(addAdminForm)">
+      <mat-form-field>
+        <input matInput type="text"
+        name="newAdmin"
+        ngModel
+        placeholder="Existing User's Username (Part before @)"
+        #newAdminName="ngModel"
+        required
+        >
+        <mat-error *ngIf="newAdminName.invalid">Please enter a valid username.</mat-error>
+      </mat-form-field>
+
+
+      <mat-form-field>
+        <input matInput
+        type="password"
+        name="password"
+        ngModel
+        #passwordInput="ngModel"
+        placeholder="New Password"
+        required>
+        <mat-error *ngIf="passwordInput.invalid">Please enter a valid password.</mat-error>
+      </mat-form-field>
+      <button mat-raised-button color="" type="submit">Register Admin</button>
+    </form>
+  </mat-card>

@@ -139,6 +139,19 @@
           </textarea>
            <mat-error *ngIf="review.invalid">Please enter a valid review.</mat-error>
         </mat-form-field>
+        <mat-form-field>
+          <textarea
+           matInput
+           rows="1"
+           name="username"
+           maxlength="40"
+           ngModel
+           required
+           placeholder="Username"
+           #username="ngModel">
+          </textarea>
+           <mat-error *ngIf="username.invalid">Please enter a valid username.</mat-error>
+        </mat-form-field>
         <button
         mat-raised-button
         color="primary"

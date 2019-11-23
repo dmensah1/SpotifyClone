@@ -3,4 +3,5 @@ export interface Review {
   rating: number;
   review: string;
   songName: string;
+  username: string;
 }

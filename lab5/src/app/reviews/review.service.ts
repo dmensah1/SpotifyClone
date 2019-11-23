@@ -12,8 +12,8 @@ export class ReviewsService {
 
   constructor(private http: HttpClient) {}
 
-  addReview(rating: number, review: string, songName: string) {
-    const fullReview: Review = {id: null, rating: rating, review: review, songName: songName};
+  addReview(rating: number, review: string, songName: string, username: string) {
+    const fullReview: Review = {id: null, rating: rating, review: review, songName: songName, username: username};
     this.http.post<{message: string, reviewId: string}>('http://localhost:3000/api/reviews', fullReview)
     .subscribe((response) => {
       const id = response.reviewId;
@@ -33,7 +33,8 @@ export class ReviewsService {
             id: review._id,
             rating: review.rating,
             review: review.review,
-            songName: review.songName
+            songName: review.songName,
+            username: review.username
           };
         });
       }))
