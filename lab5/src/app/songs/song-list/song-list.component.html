@@ -34,6 +34,9 @@
       <a mat-button color="primary" [routerLink]="['/review-create', song.id]">Add a Review</a>
       <button mat-button color="warn" (click)="onDelete(song.id)">Delete</button>
     </mat-action-row>
+    <mat-action-row *ngIf="adminIsAuthenticated">
+      <button mat-button color="warn" (toggle)="toggleDisplay(song.id)">Toggle Display</button>
+    </mat-action-row>
   </mat-expansion-panel>
 </mat-accordion>
 <p class="info-text mat-body-1" *ngIf="songs.length <= 0">No songs yet</p>

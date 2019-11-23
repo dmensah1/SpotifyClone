@@ -16,9 +16,11 @@ export class SongListComponent implements OnInit, OnDestroy {
  songs: Song[] = [];
  reviews: Review[] = [];
  userIsAuthenticated = false;
+ adminIsAuthenticated = false;
   public reviewsSub: Subscription;
  private songsSub: Subscription;
  private authStatusSub: Subscription;
+ private adminAuthStatusSub: Subscription;
 
  constructor(public songsService: SongsService, public reviewsService: ReviewsService, private authService: AuthService) {}
 
@@ -39,10 +41,20 @@ export class SongListComponent implements OnInit, OnDestroy {
    .subscribe(isAuthenticated => {
     this.userIsAuthenticated = isAuthenticated;
    });
+
+   this.adminIsAuthenticated = this.authService.getIsAdminAuth();
+   this.adminAuthStatusSub = this.authService.getAdminAuthStatusListener()
+   .subscribe(isAuthenticated => {
+    this.adminIsAuthenticated = isAuthenticated;
+   });
  }
 
  onDelete(songId: string) {
   this.songsService.deleteSong(songId);
+ }
+
+ toggleDisplay(songId: string) {
+
  }
 
  ngOnDestroy() {
