@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../auth.service';
 import { Subscription } from 'rxjs';
 import { NgForm } from '@angular/forms';
+import { PolicyData } from '../policy.model';
 
 
 @Component({
@@ -11,10 +12,11 @@ import { NgForm } from '@angular/forms';
 export class PrivacyPolicyComponent implements OnInit {
 
   isAdmin = false;
-  policyText: any = {
-    content: 'Security and Privacy Policy.'
-  };
+  policyExists = false;
+  policies: PolicyData[]  = [];
   private adminAuthListenerSubs: Subscription;
+  private policySub: Subscription;
+
 
   constructor(private authService: AuthService) {}
 
@@ -24,14 +26,18 @@ export class PrivacyPolicyComponent implements OnInit {
       .subscribe(isAuthenticated => {
         this.isAdmin = isAuthenticated;
     });
-    const policyContainer = document.getElementById('policy-container');
-    policyContainer.innerHTML = this.policyText.content;
-  }
 
-  displayPolicy(form: NgForm) {
-    this.policyText.content = form.value.policy;
-   /* const policyContainer = document.getElementById('policy-container');
-    policyContainer.innerHTML = this.policyText.content; */
-    form.reset();
+    this.authService.getPolicy();
+    this.policySub = this.authService.getPolicyUpdateListener()
+ .subscribe((policys: PolicyData[]) => {
+   this.policies = policys;
+  });
+}
+
+  makePolicy(form: NgForm) {
+    if (form.invalid) { return; };
+    this.authService.addPolicy(form.value.policy);
+    form.resetForm();
+    this.policyExists = true;
   }
 }

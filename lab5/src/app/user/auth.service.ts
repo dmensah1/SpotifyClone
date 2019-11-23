@@ -3,6 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import { AuthData } from './auth.model';
 import { Subject } from 'rxjs';
 import { Router } from '@angular/router';
+import { PolicyData } from './policy.model';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -14,6 +16,9 @@ export class AuthService {
   private tokenTimer: any;
   private authStatusListener = new Subject<boolean>();
   private adminAuthStatusListener = new Subject<boolean>();
+
+  private policy: PolicyData[] = [];
+  private policyUpdated = new Subject<PolicyData[]>();
 
   constructor(private http: HttpClient, private router: Router) {}
 
@@ -35,6 +40,37 @@ export class AuthService {
 
   getAdminAuthStatusListener() {
     return this.adminAuthStatusListener.asObservable();
+  }
+
+  addPolicy(policy: string) {
+    const policyData: PolicyData = {policy: policy};
+    this.http.post('http://localhost:3000/api/policy', policyData)
+    .subscribe(response => {
+      console.log(response);
+    });
+  }
+
+  getPolicy() {
+      this.http.get<{message: string, policy: any}>(
+        'http://localhost:3000/api/policy'
+        )
+        .pipe(map((reviewData) => {
+          return reviewData.policy.map(policy => {
+            return {
+              id: policy._id,
+              policy: policy.policy
+            };
+          });
+        }))
+      .subscribe((updatedPolicy) => {
+        this.policy = updatedPolicy;
+        this.policyUpdated.next([...this.policy]);
+      });
+
+  }
+
+  getPolicyUpdateListener() {
+    return this.policyUpdated.asObservable();
   }
 
 

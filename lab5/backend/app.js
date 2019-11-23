@@ -9,6 +9,7 @@ const songsRoutes = require('./routes/songs');
 const reviewsRoutes = require('./routes/reviews');
 const userRoutes = require('./routes/users');
 const adminRoutes = require('./routes/admin');
+const spPolicyRoutes = require('./routes/policy');
 
 const app = express();  //returns us an express app which can now be used
 
@@ -46,6 +47,8 @@ app.use("/api/reviews", reviewsRoutes);
 app.use("/api/user", userRoutes);
 
 app.use("/api/admin", adminRoutes);
+
+app.use("/api/policy", spPolicyRoutes);
 
 //exporting the module
 module.exports = app;

@@ -1,6 +1,6 @@
 <mat-card>
-    <form #policyForm="ngForm" (submit)="displayPolicy(policyForm)">
-      <mat-form-field *ngIf="isAdmin">
+    <form #policyForm="ngForm" (submit)="makePolicy(policyForm)" *ngIf="isAdmin && policyExists">
+      <mat-form-field >
         <input matInput
         id="textVal"
         rows="5"
@@ -14,4 +14,6 @@
       <button mat-raised-button color="primary" type="submit">Submit Form</button>
     </form>
   </mat-card>
-  <p id="policy-container"></p>
+  <div *ngFor="let policy of policies">
+      <p id="policy-container"> {{ policy.policy }}</p>
+  </div>
