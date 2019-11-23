@@ -21,6 +21,7 @@ export class SongListComponent implements OnInit, OnDestroy {
  private songsSub: Subscription;
  private authStatusSub: Subscription;
  private adminAuthStatusSub: Subscription;
+ panelOpenState: boolean = false;
 
  constructor(public songsService: SongsService, public reviewsService: ReviewsService, private authService: AuthService) {}
 
@@ -53,8 +54,16 @@ export class SongListComponent implements OnInit, OnDestroy {
   this.songsService.deleteSong(songId);
  }
 
- toggleDisplay(songId: string) {
-
+ // function to toggle display of songs, need to implement
+ toggleDisplay() {
+  // this.panelOpenState = !this.panelOpenState;
+  /*
+  const container = document.getElementById('container');
+  if (container.style.display !== 'none') {
+    container.style.display = 'none';
+    } else {
+      container.style.display = 'block';
+    }*/
  }
 
  ngOnDestroy() {

@@ -1,0 +1,17 @@
+<mat-card>
+    <form #policyForm="ngForm" (submit)="displayPolicy(policyForm)">
+      <mat-form-field *ngIf="isAdmin">
+        <input matInput
+        id="textVal"
+        rows="5"
+        type="text"
+        name="policy"
+        ngModel
+        placeholder="Security & Privacy Policy"
+        #policyInput="ngModel"
+        required>
+      </mat-form-field>
+      <button mat-raised-button color="primary" type="submit">Submit Form</button>
+    </form>
+  </mat-card>
+  <p id="policy-container"></p>

@@ -26,6 +26,7 @@ import { LoginComponent } from './user/login/login.component';
 import { SignupComponent } from './user/signup/signup.component';
 import { AuthInterceptor } from './user/auth-interceptor';
 import { AddAdminComponent } from './user/addAdmin/addAdmin.component';
+import { PrivacyPolicyComponent } from './user/policies/policy.component';
 
 
 @NgModule({
@@ -38,7 +39,8 @@ import { AddAdminComponent } from './user/addAdmin/addAdmin.component';
     SongFilterPipe,
     LoginComponent,
     SignupComponent,
-    AddAdminComponent
+    AddAdminComponent,
+    PrivacyPolicyComponent
   ],
   imports: [
     BrowserModule,

@@ -7,6 +7,7 @@ import { LoginComponent } from './user/login/login.component';
 import { SignupComponent } from './user/signup/signup.component';
 import { AuthGuard } from './user/auth.guard';
 import { AddAdminComponent } from './user/addAdmin/addAdmin.component';
+import { PrivacyPolicyComponent } from './user/policies/policy.component';
 
 
 const routes: Routes = [
@@ -15,7 +16,8 @@ const routes: Routes = [
   { path: 'review-create/:songId', component: ReviewCreateComponent, canActivate: [AuthGuard]},
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },
-  { path: 'add-admin', component: AddAdminComponent}
+  { path: 'add-admin', component: AddAdminComponent},
+  { path: 'policy', component: PrivacyPolicyComponent}
 ];
 
 @NgModule({

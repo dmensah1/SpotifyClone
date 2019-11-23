@@ -16,6 +16,9 @@
     <li *ngIf="adminIsAuthenticated">
         <button mat-button routerLink="/add-admin" routerLinkActive="mat-accent" >Add an Admin</button>
     </li>
+    <li>
+        <button mat-button routerLink="/policy" routerLinkActive="mat-accent" >Security Policy</button>
+    </li>
     <li *ngIf="userIsAuthenticated || adminIsAuthenticated">
       <button mat-button (click)="onLogout()">Logout</button>
     </li>
