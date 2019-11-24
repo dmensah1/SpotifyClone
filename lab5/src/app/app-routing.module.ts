@@ -10,6 +10,7 @@ import { AddAdminComponent } from './user/addAdmin/addAdmin.component';
 import { PrivacyPolicyComponent } from './user/policies/policy.component';
 import { DmcaComponent } from './user/dmca/dmca.component';
 import { TakedownProcComponent } from './user/takedownProc/takedown-proc.component';
+import { DeactivateComponent } from './user/deactivate/deactivate.component';
 
 
 const routes: Routes = [
@@ -21,7 +22,8 @@ const routes: Routes = [
   { path: 'add-admin', component: AddAdminComponent},
   { path: 'policy', component: PrivacyPolicyComponent},
   { path: 'dmca', component: DmcaComponent},
-  { path: 'takedown', component: TakedownProcComponent}
+  { path: 'takedown', component: TakedownProcComponent},
+  { path: 'deactivate', component: DeactivateComponent}
 ];
 
 @NgModule({

@@ -46,6 +46,7 @@ export class AuthService {
     return this.adminAuthStatusListener.asObservable();
   }
 
+  // creates a new security and privacy policy
   addPolicy(policy: string) {
     const policyData: PolicyData = {policy: policy};
     this.http.post('http://localhost:3000/api/policy', policyData)
@@ -54,6 +55,7 @@ export class AuthService {
     });
   }
 
+  // creates a new dmca policy
   addDmcaPolicy(policy: string) {
     const dmcaData: Dmca = {policy: policy};
     this.http.post('http://localhost:3000/api/dmca', dmcaData)
@@ -62,6 +64,7 @@ export class AuthService {
     });
   }
 
+  // returns s security and privacy policy
   getPolicy() {
       this.http.get<{message: string, policy: any}>(
         'http://localhost:3000/api/policy'
@@ -80,6 +83,7 @@ export class AuthService {
       });
   }
 
+  // returns dmca policy
   getDmcaPolicy() {
     this.http.get<{message: string, policy: any}>(
       'http://localhost:3000/api/dmca'
@@ -107,26 +111,52 @@ export class AuthService {
   }
 
 
+  // creates a new user in the user DB
   createUser(email: string, password: string) {
-    const authData: AuthData = {email: email, password: password};
+    const authData: AuthData = {email: email, password: password, isActive: true};
+    this.http.post('http://localhost:3000/api/user/signup', authData)
+    .subscribe(response => {
+      console.log(response);
+      this.router.navigate(['/login']);
+
+    });
+  }
+
+   // creates a new user in the user and mark inactive in DB
+   createNewUser(email: string, password: string) {
+    const authData: AuthData = {email: email, password: password, isActive: false};
     this.http.post('http://localhost:3000/api/user/signup', authData)
     .subscribe(response => {
       console.log(response);
     });
   }
 
+  // delete a user from the DB
+  deleteUser(email: string) {
+    this.http.delete('http://localhost:3000/api/user/delete/' + email)
+    .subscribe(res => {
+      console.log(res);
+    });
+  }
+
+  // creates a new admin in the admin DB
   createAdmin(email: string, password: string) {
-    const authData: AuthData = {email: email, password: password};
+    const authData: AuthData = {email: email, password: password, isActive: true};
     this.http.post('http://localhost:3000/api/admin/signup', authData)
     .subscribe(response => {
       console.log(response);
     });
   }
 
+  // called upon user log in
   userLogin(email: string, password: string) {
-    const authData: AuthData = {email: email, password: password};
-    this.http.post<{token: string, expiresIn: number}>('http://localhost:3000/api/user/login', authData)
+    const authData: AuthData = {email: email, password: password, isActive: true};
+    this.http.post<{token: string, expiresIn: number, isActive: boolean}>('http://localhost:3000/api/user/login', authData)
     .subscribe(response => {
+      if (response.isActive === false) {
+        alert('Deactive user. Must contact site administrator.');
+        return;
+      }
       const token = response.token;
       this.token = token;
       if (token) {
@@ -143,8 +173,9 @@ export class AuthService {
     });
   }
 
+  // called upon admin login
   adminLogin(email: string, password: string) {
-    const authData: AuthData = {email: email, password: password};
+    const authData: AuthData = {email: email, password: password, isActive: true};
     this.http.post<{token: string, expiresIn: number}>('http://localhost:3000/api/admin/login', authData)
     .subscribe(response => {
       const token = response.token;
@@ -177,6 +208,7 @@ export class AuthService {
    }
   }
 
+  // called upon logout button being hit
   logout() {
     this.token = null;
     this.isAuthenticated = false;
@@ -188,6 +220,7 @@ export class AuthService {
     this.router.navigate(['/']);
   }
 
+  // sets the timer to automatically log out a user
   private setAuthTimer(duration: number) {
     console.log('Setting timer: ' + duration)
     this.tokenTimer = setTimeout(() => {
@@ -195,16 +228,19 @@ export class AuthService {
     }, duration * 1000);
   }
 
+  // saves the currently logged in user info into local storage to keep user logged in upon page refresh
   private saveAuthData(token: string, expirationDate: Date) {
     localStorage.setItem('token', token);
     localStorage.setItem('expiration', expirationDate.toISOString());
   }
 
+  // clears user data from local storage
   private clearAuthData() {
     localStorage.removeItem('token');
     localStorage.removeItem('expiration');
   }
 
+  // returns the information about the logged in user form local storage
   private getAuthData() {
     const token = localStorage.getItem('token');
     const expirationDate = localStorage.getItem('expiration');
@@ -214,4 +250,8 @@ export class AuthService {
       expirationDate: new Date(expirationDate)
     };
   }
+
+
+
+
 }

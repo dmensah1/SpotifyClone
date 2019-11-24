@@ -10,7 +10,8 @@ router.post('/signup', (req, res, next) => {
   .then(hash => {
     const user = new User({
       email: req.body.email,
-      password: hash
+      password: hash,
+      isActive: req.body.isActive
     });
     user.save()
     .then(result => {
@@ -55,12 +56,27 @@ router.post('/login', (req, res, next) => {
     );
     res.status(200).json({
       token: token,
-      expiresIn: 3600
+      expiresIn: 3600,
+      isActive: userInfo.isActive
     });
   })
   .catch(err => {
     return res.status(401).json({
       message: "Authorization unsuccessful."
+    });
+  });
+});
+
+router.delete('/delete/:email', (req, res, next) => {
+  User.deleteOne({ email: req.params.email })
+  .then(res => {
+    res.status(200).json({
+      message: 'User deleted successfully.'
+    });
+  })
+  .catch(error => {
+    res.status(401).json({
+      message: 'Unsuccessful delete.'
     });
   });
 });

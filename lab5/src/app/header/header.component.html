@@ -14,11 +14,14 @@
       <a mat-button routerLink="/signup" routerLinkActive="mat-accent">Signup</a>
     </li>
     <li *ngIf="adminIsAuthenticated">
-        <button mat-button routerLink="/add-admin" routerLinkActive="mat-accent" >Add an Admin</button>
+        <button mat-button routerLink="/add-admin" routerLinkActive="mat-accent" >Add Admin</button>
     </li>
     <li *ngIf="adminIsAuthenticated">
       <button mat-button routerLink="/takedown" routerLinkActive="mat-accent" >DMCA Takedown Procedure</button>
   </li>
+  <li *ngIf="adminIsAuthenticated">
+    <button mat-button routerLink="/deactivate" routerLinkActive="mat-accent" >Deactivate User</button>
+</li>
     <li>
         <button mat-button routerLink="/policy" routerLinkActive="mat-accent" >Security Policy</button>
     </li>

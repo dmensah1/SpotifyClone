@@ -17,7 +17,7 @@ export class SongListComponent implements OnInit, OnDestroy {
  reviews: Review[] = [];
  userIsAuthenticated = false;
  adminIsAuthenticated = false;
-  public reviewsSub: Subscription;
+ public reviewsSub: Subscription;
  private songsSub: Subscription;
  private authStatusSub: Subscription;
  private adminAuthStatusSub: Subscription;

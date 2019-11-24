@@ -6,7 +6,8 @@ const unique = require('mongoose-unique-validator');
 const adminSchema = mongoose.Schema({
   email: { type: String, required: true, unique: true },
   password: { type: String, required: true},
-  isAdmin: { type: Boolean, default: true}
+  isAdmin: { type: Boolean, default: true},
+  isActive: { type: Boolean, default: true}
 });
 
 //ensures that there cant be 2 accounts with the same email

@@ -29,6 +29,7 @@ import { AddAdminComponent } from './user/addAdmin/addAdmin.component';
 import { PrivacyPolicyComponent } from './user/policies/policy.component';
 import { DmcaComponent } from './user/dmca/dmca.component';
 import { TakedownProcComponent } from './user/takedownProc/takedown-proc.component';
+import { DeactivateComponent } from './user/deactivate/deactivate.component';
 
 
 @NgModule({
@@ -44,7 +45,8 @@ import { TakedownProcComponent } from './user/takedownProc/takedown-proc.compone
     AddAdminComponent,
     PrivacyPolicyComponent,
     DmcaComponent,
-    TakedownProcComponent
+    TakedownProcComponent,
+    DeactivateComponent
   ],
   imports: [
     BrowserModule,
