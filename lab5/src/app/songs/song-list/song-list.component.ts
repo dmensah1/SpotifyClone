@@ -21,7 +21,7 @@ export class SongListComponent implements OnInit, OnDestroy {
  private songsSub: Subscription;
  private authStatusSub: Subscription;
  private adminAuthStatusSub: Subscription;
- panelOpenState: boolean = false;
+ // panelOpenState: boolean = false;
 
  constructor(public songsService: SongsService, public reviewsService: ReviewsService, private authService: AuthService) {}
 

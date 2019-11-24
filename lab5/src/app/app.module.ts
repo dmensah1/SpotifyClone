@@ -27,6 +27,7 @@ import { SignupComponent } from './user/signup/signup.component';
 import { AuthInterceptor } from './user/auth-interceptor';
 import { AddAdminComponent } from './user/addAdmin/addAdmin.component';
 import { PrivacyPolicyComponent } from './user/policies/policy.component';
+import { DmcaComponent } from './user/dmca/dmca.component';
 
 
 @NgModule({
@@ -40,7 +41,8 @@ import { PrivacyPolicyComponent } from './user/policies/policy.component';
     LoginComponent,
     SignupComponent,
     AddAdminComponent,
-    PrivacyPolicyComponent
+    PrivacyPolicyComponent,
+    DmcaComponent
   ],
   imports: [
     BrowserModule,

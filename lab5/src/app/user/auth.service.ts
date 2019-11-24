@@ -5,6 +5,7 @@ import { Subject } from 'rxjs';
 import { Router } from '@angular/router';
 import { PolicyData } from './policy.model';
 import { map } from 'rxjs/operators';
+import { Dmca } from './dmca.model';
 
 @Injectable({
   providedIn: 'root'
@@ -19,6 +20,9 @@ export class AuthService {
 
   private policy: PolicyData[] = [];
   private policyUpdated = new Subject<PolicyData[]>();
+
+  private dmca: Dmca[] = [];
+  private dmcaUpdated = new Subject<Dmca[]>();
 
   constructor(private http: HttpClient, private router: Router) {}
 
@@ -50,12 +54,20 @@ export class AuthService {
     });
   }
 
+  addDmcaPolicy(policy: string) {
+    const dmcaData: Dmca = {policy: policy};
+    this.http.post('http://localhost:3000/api/dmca', dmcaData)
+    .subscribe(response => {
+      console.log(response);
+    });
+  }
+
   getPolicy() {
       this.http.get<{message: string, policy: any}>(
         'http://localhost:3000/api/policy'
         )
-        .pipe(map((reviewData) => {
-          return reviewData.policy.map(policy => {
+        .pipe(map((policyData) => {
+          return policyData.policy.map(policy => {
             return {
               id: policy._id,
               policy: policy.policy
@@ -66,11 +78,32 @@ export class AuthService {
         this.policy = updatedPolicy;
         this.policyUpdated.next([...this.policy]);
       });
-
   }
+
+  getDmcaPolicy() {
+    this.http.get<{message: string, policy: any}>(
+      'http://localhost:3000/api/dmca'
+      )
+      .pipe(map((policyData) => {
+        return policyData.policy.map(policy => {
+          return {
+            id: policy._id,
+            policy: policy.policy
+          };
+        });
+      }))
+    .subscribe((updatedDmca) => {
+      this.dmca = updatedDmca;
+      this.dmcaUpdated.next([...this.dmca]);
+    });
+}
 
   getPolicyUpdateListener() {
     return this.policyUpdated.asObservable();
+  }
+
+  getDmcaUpdateListener() {
+    return this.dmcaUpdated.asObservable();
   }
 
 

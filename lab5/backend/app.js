@@ -10,6 +10,7 @@ const reviewsRoutes = require('./routes/reviews');
 const userRoutes = require('./routes/users');
 const adminRoutes = require('./routes/admin');
 const spPolicyRoutes = require('./routes/policy');
+const dmcaRoutes = require('./routes/dmca');
 
 const app = express();  //returns us an express app which can now be used
 
@@ -49,6 +50,8 @@ app.use("/api/user", userRoutes);
 app.use("/api/admin", adminRoutes);
 
 app.use("/api/policy", spPolicyRoutes);
+
+app.use("/api/dmca", dmcaRoutes);
 
 //exporting the module
 module.exports = app;

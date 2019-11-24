@@ -1,0 +1,19 @@
+<mat-card>
+    <form #dmcaForm="ngForm" (submit)="makeDmcaPolicy(dmcaForm)" *ngIf="isAdmin">
+      <mat-form-field >
+        <input matInput
+        id="textVal"
+        rows="10"
+        type="text"
+        name="DmcaInput"
+        ngModel
+        placeholder="DMCA Policy"
+        #DmcaInput="ngModel"
+        required>
+      </mat-form-field>
+      <button mat-raised-button color="primary" type="submit">Submit Form</button>
+    </form>
+  </mat-card>
+  <div *ngFor="let dmca of dmca">
+      <p id="policy-container"> {{ dmca.policy }}</p>
+  </div>

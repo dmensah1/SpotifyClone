@@ -8,6 +8,7 @@ import { SignupComponent } from './user/signup/signup.component';
 import { AuthGuard } from './user/auth.guard';
 import { AddAdminComponent } from './user/addAdmin/addAdmin.component';
 import { PrivacyPolicyComponent } from './user/policies/policy.component';
+import { DmcaComponent } from './user/dmca/dmca.component';
 
 
 const routes: Routes = [
@@ -17,7 +18,8 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },
   { path: 'add-admin', component: AddAdminComponent},
-  { path: 'policy', component: PrivacyPolicyComponent}
+  { path: 'policy', component: PrivacyPolicyComponent},
+  { path: 'dmca', component: DmcaComponent}
 ];
 
 @NgModule({

@@ -1,5 +1,5 @@
 <mat-card>
-    <form #policyForm="ngForm" (submit)="makePolicy(policyForm)" *ngIf="isAdmin && policyExists">
+    <form #policyForm="ngForm" (submit)="makePolicy(policyForm)" *ngIf="isAdmin">
       <mat-form-field >
         <input matInput
         id="textVal"

@@ -35,7 +35,7 @@ export class PrivacyPolicyComponent implements OnInit {
 }
 
   makePolicy(form: NgForm) {
-    if (form.invalid) { return; };
+    if (form.invalid) { return; }
     this.authService.addPolicy(form.value.policy);
     form.resetForm();
     this.policyExists = true;

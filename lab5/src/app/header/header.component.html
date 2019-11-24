@@ -19,6 +19,9 @@
     <li>
         <button mat-button routerLink="/policy" routerLinkActive="mat-accent" >Security Policy</button>
     </li>
+    <li>
+        <button mat-button routerLink="/dmca" routerLinkActive="mat-accent" >DMCA Policy</button>
+    </li>
     <li *ngIf="userIsAuthenticated || adminIsAuthenticated">
       <button mat-button (click)="onLogout()">Logout</button>
     </li>
