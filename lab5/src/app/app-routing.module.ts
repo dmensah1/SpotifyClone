@@ -9,6 +9,7 @@ import { AuthGuard } from './user/auth.guard';
 import { AddAdminComponent } from './user/addAdmin/addAdmin.component';
 import { PrivacyPolicyComponent } from './user/policies/policy.component';
 import { DmcaComponent } from './user/dmca/dmca.component';
+import { TakedownProcComponent } from './user/takedownProc/takedown-proc.component';
 
 
 const routes: Routes = [
@@ -19,7 +20,8 @@ const routes: Routes = [
   { path: 'signup', component: SignupComponent },
   { path: 'add-admin', component: AddAdminComponent},
   { path: 'policy', component: PrivacyPolicyComponent},
-  { path: 'dmca', component: DmcaComponent}
+  { path: 'dmca', component: DmcaComponent},
+  { path: 'takedown', component: TakedownProcComponent}
 ];
 
 @NgModule({

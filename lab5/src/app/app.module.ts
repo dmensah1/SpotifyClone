@@ -28,6 +28,7 @@ import { AuthInterceptor } from './user/auth-interceptor';
 import { AddAdminComponent } from './user/addAdmin/addAdmin.component';
 import { PrivacyPolicyComponent } from './user/policies/policy.component';
 import { DmcaComponent } from './user/dmca/dmca.component';
+import { TakedownProcComponent } from './user/takedownProc/takedown-proc.component';
 
 
 @NgModule({
@@ -42,7 +43,8 @@ import { DmcaComponent } from './user/dmca/dmca.component';
     SignupComponent,
     AddAdminComponent,
     PrivacyPolicyComponent,
-    DmcaComponent
+    DmcaComponent,
+    TakedownProcComponent
   ],
   imports: [
     BrowserModule,
