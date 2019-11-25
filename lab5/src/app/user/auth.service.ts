@@ -117,14 +117,13 @@ export class AuthService {
     this.http.post('http://localhost:3000/api/user/signup', authData)
     .subscribe(response => {
       console.log(response);
-      this.router.navigate(['/login']);
-
+     // this.router.navigate(['/login']);
     });
   }
 
    // creates a new user in the user and mark inactive in DB
-   createNewUser(email: string, password: string) {
-    const authData: AuthData = {email: email, password: password, isActive: false};
+   createNewUser(email: string, password: string, isActive: boolean) {
+    const authData: AuthData = {email: email, password: password, isActive: isActive};
     this.http.post('http://localhost:3000/api/user/signup', authData)
     .subscribe(response => {
       console.log(response);
@@ -250,8 +249,4 @@ export class AuthService {
       expirationDate: new Date(expirationDate)
     };
   }
-
-
-
-
 }

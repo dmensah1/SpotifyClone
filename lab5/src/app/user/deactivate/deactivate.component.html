@@ -21,5 +21,7 @@
       <mat-error *ngIf="passwordInput.invalid">Please enter a valid password.</mat-error>
     </mat-form-field>
     <button mat-raised-button color="" type="submit">Deactivate User</button>
+    <button mat-raised-button color="" type="click" (click)="activateUser(deactivateForm)">Activate User</button>
+
   </form>
 </mat-card>

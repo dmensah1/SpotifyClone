@@ -14,6 +14,11 @@ export class DeactivateComponent {
 
   deactivateUser(form: NgForm) {
     this.authService.deleteUser(form.value.email);
-    this.authService.createNewUser(form.value.email, form.value.password);
+    this.authService.createNewUser(form.value.email, form.value.password, false);
+  }
+
+  activateUser(form: NgForm) {
+    this.authService.deleteUser(form.value.email);
+    this.authService.createNewUser(form.value.email, form.value.password, true);
   }
 }
