@@ -17,6 +17,7 @@ export class DmcaComponent implements OnInit {
 
   constructor(private authService: AuthService) {}
 
+  // checking user authorization upon page init since only admin can edit the form
   ngOnInit() {
     this.isAdmin = this.authService.getIsAdminAuth();
     this.dmcaAuthListenerSubs = this.authService.getAdminAuthStatusListener()
@@ -31,11 +32,18 @@ export class DmcaComponent implements OnInit {
   });
 }
 
-
+  // to add policy
   makeDmcaPolicy(form: NgForm) {
     if (form.invalid) { return; }
     this.authService.addDmcaPolicy(form.value.DmcaInput);
     form.resetForm();
     this.dmcaExists = true;
+  }
+
+  // to edit existing policy
+  editPolicy(form: NgForm) {
+    this.authService.deleteDmca(form.value.policy);
+    this.authService.addDmcaPolicy(form.value.newPolicy);
+    form.resetForm();
   }
 }

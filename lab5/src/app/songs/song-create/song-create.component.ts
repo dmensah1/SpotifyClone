@@ -34,6 +34,7 @@ export class SongCreateComponent implements OnInit {
 
   onAddSong(form: NgForm) {
     if (form.invalid) { return; }
+    // form values passed to addSong function in service ts file
     this.songsService.addSong(form.value.title,
        form.value.artist,
         form.value.album,

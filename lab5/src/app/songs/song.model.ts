@@ -1,3 +1,4 @@
+// front-end interface model for songs
 export interface Song {
   id: string;
   title: string;

@@ -7,15 +7,18 @@ import { map } from 'rxjs/operators';
 @Injectable({providedIn: 'root'})
 export class ReviewsService {
 
+  // reviews kept in an array on front-end
   private reviews: Review[] = [];
   private reviewsUpdated = new Subject<Review[]>();
 
   constructor(private http: HttpClient) {}
 
+  // function to add a review
   addReview(rating: number, review: string, songName: string, username: string) {
     const fullReview: Review = {id: null, rating: rating, review: review, songName: songName, username: username};
     this.http.post<{message: string, reviewId: string}>('http://localhost:3000/api/reviews', fullReview)
     .subscribe((response) => {
+      // front-end collection of reviews updated after review is added into the db
       const id = response.reviewId;
       fullReview.id = id;
       this.reviews.push(fullReview);
@@ -23,6 +26,7 @@ export class ReviewsService {
     });
   }
 
+  // fetches all reviews from db
   getReviews() {
     this.http.get<{message: string, reviews: any}>(
       'http://localhost:3000/api/reviews'
@@ -47,5 +51,4 @@ export class ReviewsService {
   getReviewUpdateListener() {
     return this.reviewsUpdated.asObservable();
   }
-
 }

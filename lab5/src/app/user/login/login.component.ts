@@ -14,7 +14,7 @@ export class LoginComponent {
   login(form: NgForm) {
     if (form.invalid) { return; }
     const email = form.value.email;
-
+    // checking whether user logging in is an admin
     if (email.indexOf('@admin.com') !== -1) {
       this.authService.adminLogin(form.value.email, form.value.password);
     } else {

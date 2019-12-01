@@ -2,6 +2,7 @@
 //this is just the blueprint/parameters for our data
 const mongoose = require('mongoose');
 
+//song schema
 const songSchema = mongoose.Schema({
   header: {type: String, default: 'TAG'},
   title: { type: String, required: true, maxlength: 30 },
@@ -12,7 +13,6 @@ const songSchema = mongoose.Schema({
   comment: { type: String, maxlength: 30 },
   track: { type: String},
   genre: { type: String, maxlength: 15 }
-  //creator: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true}
 });
 
 //defining the name for the model & the schema you want to use

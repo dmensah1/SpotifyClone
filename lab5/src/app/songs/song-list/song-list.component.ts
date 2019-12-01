@@ -26,17 +26,19 @@ export class SongListComponent implements OnInit, OnDestroy {
  constructor(public songsService: SongsService, public reviewsService: ReviewsService, private authService: AuthService) {}
 
  ngOnInit() {
+   // fetching all songs upon page init
    this.songsService.getSongs();
    this.songsSub = this.songsService.getSongUpdateListener()
   .subscribe((songs: Song[]) => {
     this.songs = songs;
   });
-
+  // fetching all existing reviews upon page init
    this.reviewsService.getReviews();
    this.reviewsSub = this.reviewsService.getReviewUpdateListener()
  .subscribe((reviews: Review[]) => {
    this.reviews = reviews;
  });
+  // getting user authorization level upon page init
    this.userIsAuthenticated = this.authService.getIsAuth();
    this.authStatusSub = this.authService.getAuthStatusListener()
    .subscribe(isAuthenticated => {
@@ -52,18 +54,6 @@ export class SongListComponent implements OnInit, OnDestroy {
 
  onDelete(songId: string) {
   this.songsService.deleteSong(songId);
- }
-
- // function to toggle display of songs, need to implement
- toggleDisplay() {
-  // this.panelOpenState = !this.panelOpenState;
-  /*
-  const container = document.getElementById('container');
-  if (container.style.display !== 'none') {
-    container.style.display = 'none';
-    } else {
-      container.style.display = 'block';
-    }*/
  }
 
  ngOnDestroy() {

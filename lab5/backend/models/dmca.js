@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-//schema for reviews in the database
+//database schema for dmca policy
 const dmcaSchema = mongoose.Schema({
   policy: { type: String, required: true },
 });

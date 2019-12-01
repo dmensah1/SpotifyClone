@@ -12,7 +12,7 @@ import { DmcaComponent } from './user/dmca/dmca.component';
 import { TakedownProcComponent } from './user/takedownProc/takedown-proc.component';
 import { DeactivateComponent } from './user/deactivate/deactivate.component';
 
-
+// different routes defined here
 const routes: Routes = [
   { path: '', component: SongListComponent },
   { path: 'create', component: SongCreateComponent, canActivate: [AuthGuard] },

@@ -4,6 +4,7 @@ const auth = require('../parsereqs/check-auth');
 
 const router = express.Router();
 
+//creating a new song
 router.post('', auth, (req, res, next) => {
   const song = new Song({
     title: req.body.title,
@@ -22,9 +23,9 @@ router.post('', auth, (req, res, next) => {
       songId: result._id
     });
   });
-
 });
 
+// fetching all songs in the database
 router.get('', (req, res, next) => {
   Song.find().then(documents => {
     console.log(documents);
@@ -35,6 +36,7 @@ router.get('', (req, res, next) => {
   });
 });
 
+//deleting a single song, specified by its id
 router.delete('/:id', auth, (req, res, next) => {
   Song.deleteOne({
     _id: req.params.id

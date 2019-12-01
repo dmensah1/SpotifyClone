@@ -5,6 +5,7 @@ const jwt = require('jsonwebtoken');
 
 const router = express.Router();
 
+//creating a new user in database
 router.post('/signup', (req, res, next) => {
   bcrypt.hash(req.body.password, 10)
   .then(hash => {
@@ -67,6 +68,7 @@ router.post('/login', (req, res, next) => {
   });
 });
 
+//deleting a user based on the email passed in req parameter
 router.delete('/delete/:email', (req, res, next) => {
   User.deleteOne({ email: req.params.email })
   .then(res => {

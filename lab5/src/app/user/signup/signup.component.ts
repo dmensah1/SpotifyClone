@@ -9,15 +9,9 @@ import { AuthService } from '../auth.service';
 export class SignupComponent {
 
   constructor(public authService: AuthService) {}
-
+  // to add new user with user input data from form
   signup(form: NgForm) {
     if (form.invalid) { return; }
-    const email = form.value.email;
-
-    if (email.indexOf('@admin.com') !== -1) {
-      this.authService.createAdmin(form.value.email, form.value.password);
-    } else {
-      this.authService.createUser(form.value.email, form.value.password);
-    }
+    this.authService.createUser(form.value.email, form.value.password);
   }
 }

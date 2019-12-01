@@ -6,7 +6,9 @@ const jwt = require('jsonwebtoken');
 
 const router = express.Router();
 
+//create an admin in the database
 router.post('/signup', (req, res, next) => {
+  //password hashed before storing in the database
   bcrypt.hash(req.body.password, 10)
   .then(hash => {
     const admin = new Admin({
@@ -28,6 +30,7 @@ router.post('/signup', (req, res, next) => {
   });
 });
 
+//called upon logins
 router.post('/login', (req, res, next) => {
   let adminInfo;
   //checking to see if email of user already exists

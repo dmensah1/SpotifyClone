@@ -11,6 +11,7 @@ export class SongFilterPipe implements PipeTransform {
     if (!songs || !searchTerm) {
       return songs;
     }
+    // filters applied to the song array
     return songs.filter(song =>
        (song.title.toLowerCase().indexOf(searchTerm.toLowerCase()) !== -1) ||
         (song.artist.toLowerCase().indexOf(searchTerm.toLowerCase()) !== -1) ||

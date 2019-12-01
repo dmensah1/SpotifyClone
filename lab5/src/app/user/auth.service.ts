@@ -54,9 +54,17 @@ export class AuthService {
       console.log(response);
     });
   }
-
+  // to delete snp policy
   deletePolicy(policy: string) {
     this.http.delete('http://localhost:3000/api/policy/delete/' + policy)
+    .subscribe(response => {
+      console.log(response);
+    });
+  }
+
+  // to delete dmca policy
+  deleteDmca(policy: string) {
+    this.http.delete('http://localhost:3000/api/dmca/delete/' + policy)
     .subscribe(response => {
       console.log(response);
     });
@@ -71,7 +79,7 @@ export class AuthService {
     });
   }
 
-  // returns s security and privacy policy
+  // returns security and privacy policy & updates front-end collection of policies
   getPolicy() {
       this.http.get<{message: string, policy: any}>(
         'http://localhost:3000/api/policy'
@@ -90,7 +98,7 @@ export class AuthService {
       });
   }
 
-  // returns dmca policy
+  // returns dmca policy and updates front-end collection of dmca policies
   getDmcaPolicy() {
     this.http.get<{message: string, policy: any}>(
       'http://localhost:3000/api/dmca'
@@ -124,7 +132,6 @@ export class AuthService {
     this.http.post('http://localhost:3000/api/user/signup', authData)
     .subscribe(response => {
       console.log(response);
-     // this.router.navigate(['/login']);
     });
   }
 
@@ -166,6 +173,7 @@ export class AuthService {
       const token = response.token;
       this.token = token;
       if (token) {
+        // if a valid token is returned then a timer is set, bool variables are updated
         const expiresInDuration = response.expiresIn;
         this.setAuthTimer(expiresInDuration);
         this.isAuthenticated = true;

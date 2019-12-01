@@ -41,6 +41,7 @@ app.use((req, res, next) => {
 });
 
 //forwarding incoming requests to the appropriate routes
+// routes seperated into different folders to keep the code organized
 app.use("/api/songs", songsRoutes);
 
 app.use("/api/reviews", reviewsRoutes);

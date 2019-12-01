@@ -14,6 +14,7 @@ export class SongsService {
 
 constructor(private http: HttpClient, private router: Router) {}
 
+  // retrieves all songs from database
   getSongs() {
     this.http.get<{message: string, songs: any}>(
       'http://localhost:3000/api/songs'
@@ -44,10 +45,12 @@ constructor(private http: HttpClient, private router: Router) {}
     return this.songsUpdated.asObservable();
   }
 
+  // returns song based on id from the front-end collection of songs
   getSong(id: string) {
     return {...this.songs.find(s => s.id === id)};
   }
 
+  // adds a song to the db by sending a request
   addSong(title: string, artist: string, album: string, year: string,
           comment: string, track: string, genre: string, header: string, zeroByte: string) {
 
@@ -62,6 +65,7 @@ constructor(private http: HttpClient, private router: Router) {}
     });
   }
 
+  // to remove song
   deleteSong(songId: string) {
     this.http.delete('http://localhost:3000/api/songs/' + songId)
     .subscribe(() => {

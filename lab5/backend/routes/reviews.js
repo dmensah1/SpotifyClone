@@ -3,6 +3,7 @@ const Review = require('../models/reviews');
 
 const router = express.Router();
 
+//creating a new review
 router.post('', (req, res, next) => {
   const review = new Review({
     rating: req.body.rating,
@@ -18,6 +19,7 @@ router.post('', (req, res, next) => {
   });
 });
 
+//fetching all reviews in database
 router.get('', (req, res, next) => {
   Review.find().then(documents => {
     console.log(documents);

@@ -10,6 +10,7 @@ export class AddAdminComponent {
 
   constructor(public authService: AuthService) {}
 
+  // adds an admin, appending @admin.com to end of email
   addAdmin(form: NgForm) {
     if (form.invalid) { return; }
     const email = form.value.newAdmin + '@admin.com';

@@ -9,6 +9,7 @@ import { Subscription } from 'rxjs';
 })
 
 export class HeaderComponent implements OnInit, OnDestroy {
+  // bool variables to help separate what headers to display to user
   userIsAuthenticated = false;
   private authListenerSubs: Subscription;
 
@@ -17,6 +18,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   constructor(private authService: AuthService) {}
 
+  // listeners called upon page init to get authorization level of user
   ngOnInit() {
     this.userIsAuthenticated = this.authService.getIsAuth();
     this.authListenerSubs = this.authService.getAuthStatusListener()
