@@ -14,6 +14,36 @@
       <button mat-raised-button color="primary" type="submit">Submit Form</button>
     </form>
   </mat-card>
+
+  <mat-card>
+    <form #policyForm="ngForm" (submit)="editPolicy(policyForm)" *ngIf="isAdmin">
+      <mat-form-field >
+        <input matInput
+        id="textVal"
+        rows="8"
+        type="text"
+        name="policy"
+        ngModel
+        placeholder="Policy to Update"
+        #policyInput="ngModel"
+        required>
+      </mat-form-field>
+      <mat-form-field >
+        <input matInput
+        id="textVal11"
+        rows="8"
+        type="text"
+        name="newPolicy"
+        ngModel
+        placeholder="New Policy"
+        #newPolicyInput="ngModel"
+        required>
+      </mat-form-field>
+      <button mat-raised-button color="primary" type="submit">Edit Policy</button>
+    </form>
+  </mat-card>
+
+
   <div *ngFor="let policy of policies">
       <p id="policy-container"> {{ policy.policy }}</p>
   </div>

@@ -48,8 +48,15 @@ export class AuthService {
 
   // creates a new security and privacy policy
   addPolicy(policy: string) {
-    const policyData: PolicyData = {policy: policy};
-    this.http.post('http://localhost:3000/api/policy', policyData)
+    const policyData: PolicyData = {id: null, policy: policy};
+    this.http.post<{policyId: string}>('http://localhost:3000/api/policy', policyData)
+    .subscribe(response => {
+      console.log(response);
+    });
+  }
+
+  deletePolicy(policy: string) {
+    this.http.delete('http://localhost:3000/api/policy/delete/' + policy)
     .subscribe(response => {
       console.log(response);
     });
@@ -153,7 +160,7 @@ export class AuthService {
     this.http.post<{token: string, expiresIn: number, isActive: boolean}>('http://localhost:3000/api/user/login', authData)
     .subscribe(response => {
       if (response.isActive === false) {
-        alert('Deactive user. Must contact site administrator.');
+        alert('Deactive user. Must contact site administrator at demirmensah@hotmail.com');
         return;
       }
       const token = response.token;
@@ -170,6 +177,12 @@ export class AuthService {
         this.router.navigate(['/']);
       }
     });
+    setTimeout(() => {
+        if (!this.getIsAuth()) {
+          alert('Login credentials are wrong.');
+          return;
+    }
+      }, 1000);
   }
 
   // called upon admin login
