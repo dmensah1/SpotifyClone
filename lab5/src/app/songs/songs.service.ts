@@ -56,6 +56,7 @@ constructor(private http: HttpClient, private router: Router) {}
 
     const song: Song = {id: null, title: title, artist: artist, album: album, year: year, comment: comment,
        track: track, genre: genre, header: header, zeroByte: zeroByte};
+       
     this.http.post<{message: string, songId: string}>('http://localhost:3000/api/songs', song)
     .subscribe((responseData) => {
       const id = responseData.songId;

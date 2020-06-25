@@ -1,6 +1,6 @@
 <mat-toolbar color="primary">
   <span>
-    <a routerLink="/">MusicReviewApp</a>
+    <a routerLink="/">MyMusic</a>
   </span>
   <span class="void"></span>
   <ul>
@@ -8,15 +8,19 @@
     <li *ngIf="userIsAuthenticated">
       <a mat-button routerLink="/create" routerLinkActive="mat-accent">Add a Song</a>
     </li>
+
     <li *ngIf="!userIsAuthenticated && !adminIsAuthenticated">
       <a mat-button routerLink="/login" routerLinkActive="mat-accent">Login</a>
     </li>
+
     <li *ngIf="!userIsAuthenticated && !adminIsAuthenticated">
       <a mat-button routerLink="/signup" routerLinkActive="mat-accent">Signup</a>
     </li>
+
     <li *ngIf="adminIsAuthenticated">
         <button mat-button routerLink="/add-admin" routerLinkActive="mat-accent" >Add Admin</button>
     </li>
+
     <li *ngIf="adminIsAuthenticated">
       <button mat-button routerLink="/takedown" routerLinkActive="mat-accent" >DMCA Takedown Procedure</button>
   </li>

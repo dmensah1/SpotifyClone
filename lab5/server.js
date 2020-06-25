@@ -16,7 +16,6 @@ const normalizePort = val => {
     // port number
     return port;
   }
-
   return false;
 };
 //checks what kind of error occurs & exits gracefully from server
